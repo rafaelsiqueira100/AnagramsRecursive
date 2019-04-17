@@ -1,0 +1,85 @@
+[0m[[0m[31merror[0m] [0m[0m/home/rafaelsiqueira/curso_scala/forcomp/src/test/scala/forcomp/AnagramsSuite.scala:3:12: object scalatest is not a member of package org[0m
+[0m[[0m[31merror[0m] [0m[0mimport org.scalatest.FunSuite[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/rafaelsiqueira/curso_scala/forcomp/src/test/scala/forcomp/AnagramsSuite.scala:4:12: object junit is not a member of package org[0m
+[0m[[0m[31merror[0m] [0m[0mimport org.junit.runner.RunWith[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/rafaelsiqueira/curso_scala/forcomp/src/test/scala/forcomp/AnagramsSuite.scala:5:12: object scalatest is not a member of package org[0m
+[0m[[0m[31merror[0m] [0m[0mimport org.scalatest.junit.JUnitRunner[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/rafaelsiqueira/curso_scala/forcomp/src/test/scala/forcomp/AnagramsSuite.scala:6:8: not found: object Anagrams[0m
+[0m[[0m[31merror[0m] [0m[0mimport Anagrams._[0m
+[0m[[0m[31merror[0m] [0m[0m       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/rafaelsiqueira/curso_scala/forcomp/src/test/scala/forcomp/AnagramsSuite.scala:11:29: not found: type FunSuite[0m
+[0m[[0m[31merror[0m] [0m[0mclass AnagramsSuite extends FunSuite  {[0m
+[0m[[0m[31merror[0m] [0m[0m                            ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/rafaelsiqueira/curso_scala/forcomp/src/test/scala/forcomp/AnagramsSuite.scala:10:2: not found: type RunWith[0m
+[0m[[0m[31merror[0m] [0m[0m@RunWith(classOf[JUnitRunner])[0m
+[0m[[0m[31merror[0m] [0m[0m ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/rafaelsiqueira/curso_scala/forcomp/src/test/scala/forcomp/AnagramsSuite.scala:13:3: not found: value test[0m
+[0m[[0m[31merror[0m] [0m[0m  test("wordOccurrences: abcd") {[0m
+[0m[[0m[31merror[0m] [0m[0m  ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/rafaelsiqueira/curso_scala/forcomp/src/test/scala/forcomp/AnagramsSuite.scala:14:12: not found: value wordOccurrences[0m
+[0m[[0m[31merror[0m] [0m[0m    assert(wordOccurrences("abcd").asJava === List(('a', 1), ('b', 1), ('c', 1), ('d', 1)))[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/rafaelsiqueira/curso_scala/forcomp/src/test/scala/forcomp/AnagramsSuite.scala:17:3: not found: value test[0m
+[0m[[0m[31merror[0m] [0m[0m  test("wordOccurrences: Robert") {[0m
+[0m[[0m[31merror[0m] [0m[0m  ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/rafaelsiqueira/curso_scala/forcomp/src/test/scala/forcomp/AnagramsSuite.scala:18:12: not found: value wordOccurrences[0m
+[0m[[0m[31merror[0m] [0m[0m    assert(wordOccurrences("Robert") === List(('b', 1), ('e', 1), ('o', 1), ('r', 2), ('t', 1)))[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/rafaelsiqueira/curso_scala/forcomp/src/test/scala/forcomp/AnagramsSuite.scala:22:3: not found: value test[0m
+[0m[[0m[31merror[0m] [0m[0m  test("sentenceOccurrences: abcd e") {[0m
+[0m[[0m[31merror[0m] [0m[0m  ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/rafaelsiqueira/curso_scala/forcomp/src/test/scala/forcomp/AnagramsSuite.scala:23:12: not found: value sentenceOccurrences[0m
+[0m[[0m[31merror[0m] [0m[0m    assert(sentenceOccurrences(List("abcd", "e")) === List(('a', 1), ('b', 1), ('c', 1), ('d', 1), ('e', 1)))[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/rafaelsiqueira/curso_scala/forcomp/src/test/scala/forcomp/AnagramsSuite.scala:27:3: not found: value test[0m
+[0m[[0m[31merror[0m] [0m[0m  test("dictionaryByOccurrences.get: eat") {[0m
+[0m[[0m[31merror[0m] [0m[0m  ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/rafaelsiqueira/curso_scala/forcomp/src/test/scala/forcomp/AnagramsSuite.scala:28:12: not found: value dictionaryByOccurrences[0m
+[0m[[0m[31merror[0m] [0m[0m    assert(dictionaryByOccurrences.get(List(('a', 1), ('e', 1), ('t', 1))).map(_.toSet) === Some(Set("ate", "eat", "tea")))[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/rafaelsiqueira/curso_scala/forcomp/src/test/scala/forcomp/AnagramsSuite.scala:32:3: not found: value test[0m
+[0m[[0m[31merror[0m] [0m[0m  test("word anagrams: married") {[0m
+[0m[[0m[31merror[0m] [0m[0m  ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/rafaelsiqueira/curso_scala/forcomp/src/test/scala/forcomp/AnagramsSuite.scala:33:12: not found: value wordAnagrams[0m
+[0m[[0m[31merror[0m] [0m[0m    assert(wordAnagrams("married").toSet === Set("married", "admirer"))[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/rafaelsiqueira/curso_scala/forcomp/src/test/scala/forcomp/AnagramsSuite.scala:36:3: not found: value test[0m
+[0m[[0m[31merror[0m] [0m[0m  test("word anagrams: player") {[0m
+[0m[[0m[31merror[0m] [0m[0m  ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/rafaelsiqueira/curso_scala/forcomp/src/test/scala/forcomp/AnagramsSuite.scala:37:12: not found: value wordAnagrams[0m
+[0m[[0m[31merror[0m] [0m[0m    assert(wordAnagrams("player").toSet === Set("parley", "pearly", "player", "replay"))[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/rafaelsiqueira/curso_scala/forcomp/src/test/scala/forcomp/AnagramsSuite.scala:42:3: not found: value test[0m
+[0m[[0m[31merror[0m] [0m[0m  test("subtract: lard - r") {[0m
+[0m[[0m[31merror[0m] [0m[0m  ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/rafaelsiqueira/curso_scala/forcomp/src/test/scala/forcomp/AnagramsSuite.scala:46:12: not found: value subtract[0m
+[0m[[0m[31merror[0m] [0m[0m    assert(subtract(lard, r) === lad)[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/rafaelsiqueira/curso_scala/forcomp/src/test/scala/forcomp/AnagramsSuite.scala:50:3: not found: value test[0m
+[0m[[0m[31merror[0m] [0m[0m  test("combinations: []") {[0m
+[0m[[0m[31merror[0m] [0m[0m  ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/rafaelsiqueira/curso_scala/forcomp/src/test/scala/forcomp/AnagramsSuite.scala:51:12: not found: value combinations[0m
+[0m[[0m[31merror[0m] [0m[0m    assert(combinations(Nil) === List(Nil))[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/rafaelsiqueira/curso_scala/forcomp/src/test/scala/forcomp/AnagramsSuite.scala:54:3: not found: value test[0m
+[0m[[0m[31merror[0m] [0m[0m  test("combinations: abba") {[0m
+[0m[[0m[31merror[0m] [0m[0m  ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/rafaelsiqueira/curso_scala/forcomp/src/test/scala/forcomp/AnagramsSuite.scala:68:35: not found: value combinations[0m
+[0m[[0m[31merror[0m] [0m[0m    val validationTest: Boolean = combinations(abba).toSet === abbacomb.toSet[0m
+[0m[[0m[31merror[0m] [0m[0m                                  ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/rafaelsiqueira/curso_scala/forcomp/src/test/scala/forcomp/AnagramsSuite.scala:75:3: not found: value test[0m
+[0m[[0m[31merror[0m] [0m[0m  test("sentence anagrams: []") {[0m
+[0m[[0m[31merror[0m] [0m[0m  ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/rafaelsiqueira/curso_scala/forcomp/src/test/scala/forcomp/AnagramsSuite.scala:77:12: not found: value sentenceAnagrams[0m
+[0m[[0m[31merror[0m] [0m[0m    assert(sentenceAnagrams(sentence) === List(Nil))[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/rafaelsiqueira/curso_scala/forcomp/src/test/scala/forcomp/AnagramsSuite.scala:80:3: not found: value test[0m
+[0m[[0m[31merror[0m] [0m[0m  test("sentence anagrams: Linux rulez") {[0m
+[0m[[0m[31merror[0m] [0m[0m  ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/rafaelsiqueira/curso_scala/forcomp/src/test/scala/forcomp/AnagramsSuite.scala:104:12: not found: value sentenceAnagrams[0m
+[0m[[0m[31merror[0m] [0m[0m    assert(sentenceAnagrams(sentence).toSet === anas.toSet)[0m
+[0m[[0m[31merror[0m] [0m[0m           ^[0m
+[0m[[0m[31merror[0m] [0m[0m28 errors found[0m

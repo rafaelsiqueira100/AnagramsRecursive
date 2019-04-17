@@ -1,0 +1,6 @@
+run
+test
+scala --version
+scala -version
+exit
+test
