@@ -5,6 +5,7 @@ import com.sun.xml.internal.bind.v2.schemagen.xmlschema.Occurs
 
 import scala.collection.immutable.List
 import java.lang.Exception
+import java.lang._
 
 object Anagrams {
 
@@ -110,20 +111,13 @@ object Anagrams {
    *  Note that the order of the occurrence list subsets does not matter -- the subsets
    *  in the example above could have been displayed in some other order.
    */
-  //List[Occurrences] = List[List[(Char, Int)]]
-  //Occurrences = List[(Char, Int)]
-  //Occurrences[i] = (Char, Int)
-  //Occurrences[i]._1 = Char
+
   def combinations(occurrences: Occurrences): List[Occurrences] = {
     def adicionarLetra(resultadoParcial: List[Occurrences], combinacaoOriginal: Occurrences,  combinacaoAtual: Occurrences, indLetraAtual: Int, numLetrasTotal: Int, flagPrint: Boolean): List[Occurrences] = {
       def gerarPossivelFrequenciaLetra (resultadoParcial: List[Occurrences], combinacaoOriginal: Occurrences, combinacaoAtual: Occurrences, indLetraAtual:Int, frequenciaLetraAtual:Int, numLetrasTotal:Int, flagPrint: Boolean): List[Occurrences]={
-      //  if (flagPrint)
-      //    println("entrou gerarPossivelFrequenciaLetra (resultadoParcial: "+resultadoParcial+",  combinacaoAtual: "+combinacaoAtual+", indLetraAtual:"+indLetraAtual+", frequenciaLetraAtual:"+frequenciaLetraAtual)
         try {
           if (indLetraAtual >= numLetrasTotal) {
             if (combinacaoAtual.length == numLetrasTotal) {
-              //  if(flagPrint)
-              //    println("resultadoParcial ::: List(combinacaoAtual) "+ (resultadoParcial ::: List(combinacaoAtual)))
               resultadoParcial ::: List(combinacaoAtual)
             }
             else {
@@ -132,7 +126,6 @@ object Anagrams {
           }
           else
           {
-
             val letraAtual: Char = combinacaoOriginal(indLetraAtual)._1
             val frequenciaMaximaLetraAtual: Int = combinacaoOriginal(indLetraAtual)._2
             if (frequenciaLetraAtual > frequenciaMaximaLetraAtual)
@@ -140,24 +133,16 @@ object Anagrams {
             else {
               val novoResultadoParcial = adicionarLetra(resultadoParcial, combinacaoOriginal, combinacaoAtual ::: List((letraAtual, frequenciaLetraAtual)), indLetraAtual + 1, numLetrasTotal, flagPrint)
               gerarPossivelFrequenciaLetra(novoResultadoParcial, combinacaoOriginal, combinacaoAtual, indLetraAtual, frequenciaLetraAtual + 1, numLetrasTotal, flagPrint)
-
             }
-
           }
-        }catch{//letra atual não existe, pula para a próxima
-          case ex:ClassCastException =>  gerarPossivelFrequenciaLetra(resultadoParcial, combinacaoOriginal, combinacaoAtual, indLetraAtual+1, 0, numLetrasTotal, flagPrint)//letra não existe
+        }
+        catch{
+          case ex:ClassCastException =>  gerarPossivelFrequenciaLetra(resultadoParcial, combinacaoOriginal, combinacaoAtual, indLetraAtual+1, 0, numLetrasTotal, flagPrint)//letra não existe em combinacaoOriginal
         }
 
-      }//fim de gerarPossivelFrequenciaLetra
-      //início de adicionarLetra
-      //if (flagPrint)
-      //  println("entrou adicionarLetra(resultadoParcial: "+resultadoParcial+", combinacaoAtual: "+combinacaoAtual+", indLetraAtual: "+indLetraAtual+", numLetrasTotal:"+numLetrasTotal)
-
-
+      }
       if(indLetraAtual >= numLetrasTotal) {
         if(combinacaoAtual.length == numLetrasTotal) {
-        //  if(flagPrint)
-        //    println("resultadoParcial ::: List(combinacaoAtual) "+ (resultadoParcial ::: List(combinacaoAtual)))
           resultadoParcial ::: List(combinacaoAtual)
         }
         else
@@ -165,10 +150,7 @@ object Anagrams {
       }
       else{
         if(combinacaoAtual.length == numLetrasTotal) {
-        //  if(flagPrint)
-        //    println("combinação atual: "+  List(combinacaoAtual))
-        //    println("resultado parcial:"+ resultadoParcial)
-          val novoResultadoParcial = List(combinacaoAtual) ::: gerarPossivelFrequenciaLetra(resultadoParcial , combinacaoOriginal, combinacaoAtual, indLetraAtual, 0, numLetrasTotal, flagPrint)
+         val novoResultadoParcial = List(combinacaoAtual) ::: gerarPossivelFrequenciaLetra(resultadoParcial , combinacaoOriginal, combinacaoAtual, indLetraAtual, 0, numLetrasTotal, flagPrint)
 
           adicionarLetra(novoResultadoParcial, combinacaoOriginal, combinacaoAtual, indLetraAtual + 1, occurrences.length, flagPrint)
         }
@@ -177,11 +159,8 @@ object Anagrams {
           adicionarLetra(novoResultadoParcial, combinacaoOriginal, combinacaoAtual, indLetraAtual + 1, occurrences.length, flagPrint)
         }
       }
-    }//fim de adicionarLetra
-    //início de combinations
-    val flagPrint:Boolean = false//occurrences.indexWhere((elem:(Char, Int)) => elem._1 == 'b') > -1
-    //if (flagPrint)
-    //  println("entrou combinations(occurrences: "+occurrences)
+    }
+    val flagPrint:Boolean = false
     if(occurrences == List())
       List(List())
     else
@@ -200,16 +179,10 @@ object Anagrams {
    *  Note: the resulting value is an occurrence - meaning it is sorted
    *  and has no zero-entries.
    */
-  //Occurrences = List[(Char, Int)]
-  //Occurrences[i] = (Char, Int)
+
   def subtract(listaOcorrencia1: Occurrences, listaOcorrencia2: Occurrences): Occurrences = {
-    //listaOcorrencia1 - listaOcorrencia2
-    //Dica: usar foldLeft, -, apply, updated
-    def subtractTheLetter(indLetraAtual: Int, listaOcorrencia1: Occurrences, listaOcorrencia2: Occurrences): Occurrences = {
-      /*if(listaOcorrencia2 == (List(('n',1), ('u',1))))
-        println("subtractTheLetter(indLetraAtual: "+indLetraAtual+", listaOcorrencia1: "+listaOcorrencia1+", listaOcorrencia2:"+listaOcorrencia2)*/
-      val maxIndLetra = listaOcorrencia1.length
-      if(indLetraAtual >= maxIndLetra)
+    def subtractTheLetter(indLetraAtual: Int, listaOcorrencia1: Occurrences, listaOcorrencia2: Occurrences, maxIndLetra:Int, flagPrint:Boolean): Occurrences = {
+      if(indLetraAtual >= maxIndLetra || listaOcorrencia1 == List())
         listaOcorrencia1
       else{
         try {
@@ -218,36 +191,33 @@ object Anagrams {
           try{
             val frequenciaLetraAtual2 = listaOcorrencia2.find((elemento : (Char, Int)) => elemento._1 == letraAtual).get._2
             val frequenciaSubtraida = frequenciaLetraAtual1 - frequenciaLetraAtual2
-            /*if(indLetraAtual == 4 && listaOcorrencia2 == (List(('n',1), ('u',1)))){
-              println("letraAtual="+letraAtual)
-              println("frequenciaLetraAtual1="+frequenciaLetraAtual1)
-              println("frequenciaLetraAtual2="+frequenciaLetraAtual2)
-              println("frequenciaSubtraida="+frequenciaSubtraida)
-            }*/
+
             if(frequenciaSubtraida>0)
-              subtractTheLetter(indLetraAtual + 1, listaOcorrencia1.map((elem : (Char, Int) ) => if(elem._1 == letraAtual) (elem._1,frequenciaSubtraida) else  (elem._1,elem._2)), listaOcorrencia2)
-            else
-              subtractTheLetter(indLetraAtual + 1, listaOcorrencia1.filter (  (elem : (Char, Int) ) => elem._1 != letraAtual ) . asInstanceOf[List[(Char, Int)]], listaOcorrencia2)
+              subtractTheLetter(indLetraAtual + 1, listaOcorrencia1.map((elem : (Char, Int) ) => if(elem._1 == letraAtual) (elem._1,frequenciaSubtraida) else  (elem._1,elem._2)), listaOcorrencia2, maxIndLetra, flagPrint)
+            else {
+              val lista1SemLetra = listaOcorrencia1.filter((elem: (Char, Int)) => elem._1 != letraAtual)
+              subtractTheLetter(indLetraAtual , lista1SemLetra, listaOcorrencia2, maxIndLetra, flagPrint)
+            }
           }
-          catch{//se o elemento não está em lista2
-            case ex: NoSuchElementException => subtractTheLetter(indLetraAtual + 1, listaOcorrencia1, listaOcorrencia2)
+          catch{
+            case ex: NoSuchElementException => subtractTheLetter(indLetraAtual + 1, listaOcorrencia1, listaOcorrencia2, maxIndLetra, flagPrint)
           }
         }
         catch{
-          case ex : ClassCastException =>/* println("ex.message:"+ex.getMessage)
-            println("listaOcorrencia1 = "+listaOcorrencia1)
-            println("indLetraAtual = "+indLetraAtual)
-            println("listaOcorrencia1(indLetraAtual)"+listaOcorrencia1(indLetraAtual))*/
-            subtractTheLetter(indLetraAtual + 1, listaOcorrencia1, listaOcorrencia2)
+          case classCastEx : ClassCastException =>
+            subtractTheLetter(indLetraAtual + 1, listaOcorrencia1, listaOcorrencia2, listaOcorrencia1.length, flagPrint)
+          case indexOutOfBoundsEx : IndexOutOfBoundsException =>
+            subtractTheLetter(indLetraAtual + 1, listaOcorrencia1, listaOcorrencia2, listaOcorrencia1.length, flagPrint)
         }
 
 
 
       }
 
-    }//fim de subtractTheLetter
+    }
+    val flagPrint = false
 
-    subtractTheLetter(0, listaOcorrencia1, listaOcorrencia2)
+    subtractTheLetter(0, listaOcorrencia1, listaOcorrencia2, listaOcorrencia1.length, flagPrint)
   }
 
   /** Returns a list of all anagram sentences of the given sentence.
@@ -290,80 +260,70 @@ object Anagrams {
    *
    *  Note: There is only one anagram of an empty sentence.
    */
-  def sentenceAnagrams(sentence: Sentence): List[Sentence] =  {
-    def adicionarPossiveisCombinacoes(remainingOccurrence: Occurrences, currentCombination: Sentence, partialResult: List[Sentence]):List[Sentence] = {
+  def sentenceAnagrams(sentence: Sentence): List[Sentence] = {
 
 
-      def adicionarCombinacao	(remainingOccurrence: Occurrences, currentCombination: Sentence, indSentenceOccurrencesCombination: Int, sentenceOccurrencesCombinations:List[Occurrences], partialResult: List[Sentence] ):List[Sentence] = {
+    def adicionarPossiveisCombinacoes(remainingOccurrence: Occurrences, currentCombination: Sentence, partialResult: List[Sentence]): List[Sentence] = {
 
 
-        def adicionarPalavra( possiveisPalavras: List[Word], indPossivelPalavraAtual: Int, resto: Occurrences, currentCombination: Sentence, partialResult: List[Sentence]): List[Sentence] = {
-          if(possiveisPalavras!=List("nu"))
-            println("\nadicionarPalavra( possiveisPalavras: "+possiveisPalavras+", indPossivelPalavraAtual: "+indPossivelPalavraAtual+/*", resto: "+resto+*/", currentCombination: "+currentCombination+", partialResult: "+partialResult+")")
-          else
-            println("\nadicionarPalavra( possiveisPalavras: "+possiveisPalavras+", indPossivelPalavraAtual: "+indPossivelPalavraAtual+", resto: "+resto+", currentCombination: "+currentCombination+", partialResult: "+partialResult+")")
-          if(indPossivelPalavraAtual >= possiveisPalavras.length)
+      def adicionarCombinacao(remainingOccurrence: Occurrences, currentCombination: Sentence, indSentenceOccurrencesCombination: Int, sentenceOccurrencesCombinations: List[Occurrences], partialResult: List[Sentence]): List[Sentence] = {
+
+
+        def adicionarPalavra(possiveisPalavras: List[Word], indPossivelPalavraAtual: Int, resto: Occurrences, currentCombination: Sentence, partialResult: List[Sentence]): List[Sentence] = {
+          if (indPossivelPalavraAtual >= possiveisPalavras.length)
             partialResult
-          else{
-            val currentWord : Word = possiveisPalavras(indPossivelPalavraAtual)
-            val novoPartialResult = partialResult ::: adicionarPossiveisCombinacoes(resto, (currentCombination.asInstanceOf[List[Word]] ::: List(currentWord)), partialResult)
-
-            adicionarPalavra(possiveisPalavras, indPossivelPalavraAtual + 1, resto, currentCombination, novoPartialResult)
+          else {
+            val currentWord: Word = possiveisPalavras(indPossivelPalavraAtual)
+            if(resto!=List()) {
+              val novoPartialResult: List[Sentence] = /*partialResult :::*/ adicionarPossiveisCombinacoes(resto, (currentCombination ::: List(currentWord)), partialResult)
+              adicionarPalavra(possiveisPalavras, indPossivelPalavraAtual + 1, resto, currentCombination, novoPartialResult)
+            }
+            else
+              adicionarPalavra(possiveisPalavras, indPossivelPalavraAtual + 1, resto, currentCombination, partialResult ::: List(currentCombination ::: List(currentWord)))
           }
-        }//fim de adicionarPalavra
-
-        //início de adicionarCombinacao
-
-
-        /*if(indSentenceOccurrencesCombination == 28){
-          val a = 5
-        }*/
-        if(indSentenceOccurrencesCombination != 28)
-          println("\nadicionarCombinacao	("/*remainingOccurrence: "+remainingOccurrence+",*/+ "currentCombination: "+currentCombination+", indSentenceOccurrencesCombination: "+indSentenceOccurrencesCombination+/*", sentenceOccurrencesCombinations:"+sentenceOccurrencesCombinations+*/", partialResult:"+partialResult+")")
-        else
-          println("\nadicionarCombinacao	(remainingOccurrence: "+remainingOccurrence+",currentCombination: "+currentCombination+", indSentenceOccurrencesCombination: "+indSentenceOccurrencesCombination+", sentenceOccurrencesCombinations:"+sentenceOccurrencesCombinations+", partialResult:"+partialResult+")")
-        if(indSentenceOccurrencesCombination >= sentenceOccurrencesCombinations.length)
+        }
+        if (indSentenceOccurrencesCombination >= sentenceOccurrencesCombinations.length)
           partialResult
-        else{
+        else {
           val currentSentenceOccurrencesCombinations: Occurrences = sentenceOccurrencesCombinations(indSentenceOccurrencesCombination)
 
           try {
             val wordsThisOccurrence: List[Word] = dictionaryByOccurrences(currentSentenceOccurrencesCombinations)
-            //Occurrences-Occurrences
             val resto: Occurrences = subtract(remainingOccurrence, currentSentenceOccurrencesCombinations)
-            if(indSentenceOccurrencesCombination == 28)
-              println("\n\ncurrentSentenceOccurrencesCombinations:"+currentSentenceOccurrencesCombinations)
-              println("\nwordsThisOccurrence:"+wordsThisOccurrence)
-              println("\nresto:"+resto)
-            //partialResult ::: adicionarPalavra(wordsThisOccurrence, 0, resto, currentCombination, partialResult)
-            if(remainingOccurrence == currentSentenceOccurrencesCombinations)//achamos uma combinação!!
-              partialResult:::List(currentCombination)
+            if (resto == List()) {
+              val novoPartialResult: List[Sentence] = adicionarPalavra(wordsThisOccurrence, 0, resto, currentCombination, partialResult)
+              novoPartialResult
+            }
             else {
-              val novoPartialResult = partialResult ::: adicionarPalavra(wordsThisOccurrence, 0, resto, currentCombination, partialResult)
+              val novoPartialResult: List[Sentence] = adicionarPalavra(wordsThisOccurrence, 0, resto, currentCombination, partialResult)
 
-              adicionarCombinacao(remainingOccurrence, currentCombination, indSentenceOccurrencesCombination + 1, sentenceOccurrencesCombinations, novoPartialResult)
+              adicionarCombinacao(remainingOccurrence, currentCombination, indSentenceOccurrencesCombination + 1, sentenceOccurrencesCombinations, novoPartialResult) //vá para próxima combinação
             }
           }
-          catch{
-            case noSuchElementEx: NoSuchElementException =>  adicionarCombinacao(remainingOccurrence, currentCombination, indSentenceOccurrencesCombination+1, sentenceOccurrencesCombinations, partialResult)//there is not any word with this occurrences in the dictionary
+          catch {
+            case noSuchElementEx: NoSuchElementException => adicionarCombinacao(remainingOccurrence, currentCombination, indSentenceOccurrencesCombination + 1, sentenceOccurrencesCombinations, partialResult) //there is not any word with this occurrences in the dictionary
           }
         }
-      }//fim de adicionarCombinacao
+      } //fim de adicionarCombinacao
       //início de adicionarPossiveisCombinacoes
-      println("\nadicionarPossiveisCombinacoes("/*remainingOccurrence: "+remainingOccurrence+"*/+", currentCombination: "+currentCombination+", partialResult: "+partialResult+")")
-      if(remainingOccurrence == List())
+      if (remainingOccurrence == List())
         partialResult
       else {
         val sentenceOccurrencesCombinations: List[Occurrences] = combinations(remainingOccurrence)
-        partialResult ::: adicionarCombinacao(remainingOccurrence, currentCombination, 0, sentenceOccurrencesCombinations, partialResult)
+        adicionarCombinacao(remainingOccurrence, currentCombination, 0, sentenceOccurrencesCombinations, partialResult)
       }
-    }//fim de adicionarPossiveisCombinacoes
+    } //fim de adicionarPossiveisCombinacoes
     //início de sentenceAnagrams
-    println("\nsentenceAnagrams(sentence: "+sentence+")")
-    val totalSentenceOccurrences: Occurrences = sentenceOccurrences(sentence)
-    if(totalSentenceOccurrences != List())
-      adicionarPossiveisCombinacoes(totalSentenceOccurrences, List(), List())
+    if (sentence != List())
+    {
+      val totalSentenceOccurrences: Occurrences = sentenceOccurrences(List(sentence.reduceLeft((a: Word, b: Word) => (a + b).toLowerCase)))
+      if (totalSentenceOccurrences != List())
+        adicionarPossiveisCombinacoes(totalSentenceOccurrences, List(), List())
+      else
+        List(List())
+    }
     else
       List(List())
+
   }
 }

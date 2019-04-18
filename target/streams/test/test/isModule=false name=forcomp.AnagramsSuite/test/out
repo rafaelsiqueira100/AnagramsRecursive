@@ -9,7 +9,5 @@
 [0m[[0minfo[0m] [0m[32m- combinations: [][0m[0m
 [0m[[0minfo[0m] [0m[32m- combinations: abba[0m[0m
 [0m[[0minfo[0m] [0m[32m- sentence anagrams: [][0m[0m
-[0m[[0minfo[0m] [0m[31m- A-A=List() *** FAILED ***[0m[0m
-[0m[[0minfo[0m] [0m[31m  List((b,2)) did not equal List() (AnagramsSuite.scala:84)[0m[0m
-[0m[[0minfo[0m] [0m[31m- sentence anagrams: Linux rulez *** FAILED ***[0m[0m
-[0m[[0minfo[0m] [0m[31m  Set() did not equal Set(List("Zulu", "nil", "Rex"), List("null", "Uzi", "Rex"), List("Zulu", "Lin", "Rex"), List("Uzi", "null", "Rex"), List("Uzi", "Rex", "null"), List("Rex", "Uzi", "null"), List("Lin", "Rex", "Zulu"), List("nil", "Rex", "Zulu"), List("nil", "Zulu", "Rex"), List("null", "Rex", "Uzi"), List("Rex", "Zulu", "Lin"), List("Rex", "nil", "Zulu"), List("Rex", "null", "Uzi"), List("Zulu", "Rex", "Lin"), List("Zulu", "Rex", "nil"), List("rulez", "Linux"), List("Rex", "Lin", "Zulu"), List("Rex", "Zulu", "nil"), List("Lin", "Zulu", "Rex"), List("Linux", "rulez")) (AnagramsSuite.scala:110)[0m[0m
+[0m[[0minfo[0m] [0m[32m- A-A=List()[0m[0m
+[0m[[0minfo[0m] [0m[32m- sentence anagrams: Linux rulez[0m[0m
